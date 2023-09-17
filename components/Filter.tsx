@@ -10,7 +10,8 @@ export default function Filter({onAddTodo}: TodoListProps) {
 	const  [inputValue, setInputValue] =  useState('');
     const supabase = createClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    )
     
     const addForm = () => {
         console.log('add form')
