@@ -14,8 +14,6 @@ export default function Filter({onAddTodo}: TodoListProps) {
     )
     
     const addForm = () => {
-        console.log('add form')
-        console.log(inputValue)
         addNewTodo(inputValue)
     }
 
