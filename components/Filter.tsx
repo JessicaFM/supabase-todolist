@@ -1,12 +1,14 @@
 'use client'
 import {useState} from 'react';
+import { useRouter } from 'next/navigation'
 import { createClient } from '@supabase/supabase-js'
 import { Input, Button } from "@nextui-org/react";
 import styles from '../app/modules/styles.module.css'
-import TodoListProps from '../app/interfaces/Todos.jsx'
+import { Todo } from '../app/interfaces/Todos.jsx'
 
 
 export default function Filter({onAddTodo}: TodoListProps) {
+    const router = useRouter()
 	const  [inputValue, setInputValue] =  useState('');
     const supabase = createClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -22,9 +24,20 @@ export default function Filter({onAddTodo}: TodoListProps) {
 	};
 
     const addNewTodo = async (newTodo: string) => {
-        const { error } = await supabase
+        const { data, error } = await supabase
         .from('todos')
         .insert({ description: newTodo })
+        .select()
+        if(!error) {
+            let todo: Todo = {
+                id: data[0].id,
+                description: newTodo,
+                created_at: data[0].created_at,
+                modify_at: data[0].modify_at
+            }
+        } else {
+            // TODO
+        }
     };
 
     return (

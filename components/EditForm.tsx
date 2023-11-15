@@ -1,9 +1,8 @@
 'use client'
-import { redirect } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import { Input, Button } from "@nextui-org/react";
 import { createClient } from '@supabase/supabase-js'
-
+import Todo from '../app/types'
 
 export default function EditForm({item}: any) {
     const router = useRouter()
@@ -15,9 +14,9 @@ export default function EditForm({item}: any) {
             .update({ description: item.description })
             .eq('id', item.id)
         if(!error) {
-            router.push('/')
+            router.refresh
         } else {
-            // TODO
+            //Todo
         }
     }
 
