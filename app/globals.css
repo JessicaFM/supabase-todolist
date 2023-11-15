@@ -44,6 +44,8 @@
     transform: translateY(0);
   }
 }
-body {
-  color: var(--text-color);
+
+body,
+table tbody  {
+  color: white;
 }
